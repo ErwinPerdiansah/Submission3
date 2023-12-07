@@ -10,3 +10,8 @@ class Controller extends BaseController
 {
     use AuthorizesRequests, ValidatesRequests;
 }
+class ProfilController extends Controller {
+    public function index() {
+        return view('profil');
+    }
+}

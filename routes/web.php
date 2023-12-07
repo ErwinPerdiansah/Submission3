@@ -20,3 +20,18 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::get('/products', 'ProductController@index');
+Route::get('/profil', 'ProfilController@index');
+Route::get('/profil/{id}', 'ProfilController@show');
+Route::get('/', function () {
+    return view('welcome');
+});
+Route::get('/products', function () {
+    $products = App\Models\Product::all();
+    return view('products.index', ['products' => $products]);
+});
