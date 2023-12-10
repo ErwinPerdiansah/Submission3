@@ -35,3 +35,5 @@ Route::get('/products', function () {
     $products = App\Models\Product::all();
     return view('products.index', ['products' => $products]);
 });
+Route::resource('user', RepositoryController::class)
+Route::resource('repository', RepositoryController::class)
