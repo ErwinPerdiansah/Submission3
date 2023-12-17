@@ -1,16 +1,35 @@
 @extends('layouts.app')
 @section('content')
-    
 <div class="container">
+
+    @if(session('success'))
+    <div clss="alert alert-success">
+        <div>{{ session('success') }}</div>
+    </div> 
+    @endif 
+    
+    <div class="sm:fixed sm:top-0 p-6 text-right z-10">
+        <h4 class="{{ route('repository.create') }}" class="btn btn-dark">create</a>
+        <table class="table">
+        <thead>
+            <tr>
+
+    <h6 class="display-6">Data Repositori</h6>
+    <td><a href='' class="btn btn-primary float right">create</a></td>
+            </tr>
+        </thead>
+    </table>
+</div>
+
     <table class="table">
         <thead>
             <tr>
-                <th>no</th>
-                <th>title</th>
-                <th>author</th>
-                <th>year</th>
-                <th>description</th>
-                <th>option</th>
+                <th class="col-md-1">no</th>
+                <th class="col-md-3">title</th>
+                <th class="col-md-4">author</th>
+                <th class="col-md-2">year</th>
+                <th class="col-md-2">description</th>
+                <th class="col-md-2">option</th>
             </tr>
         </thead>
         <tbody>

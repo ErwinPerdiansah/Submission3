@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\RepositoryController;
+use App\Http\Controllers\SessionController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -25,6 +27,8 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
+Route::resource('user', RepositoryController::class);
+Route::resource('repository', RepositoryController::class);
 Route::get('/products', 'ProductController@index');
 Route::get('/profil', 'ProfilController@index');
 Route::get('/profil/{id}', 'ProfilController@show');
@@ -35,5 +39,3 @@ Route::get('/products', function () {
     $products = App\Models\Product::all();
     return view('products.index', ['products' => $products]);
 });
-Route::resource('user', RepositoryController::class)
-Route::resource('repository', RepositoryController::class)

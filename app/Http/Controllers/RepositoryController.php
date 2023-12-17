@@ -25,7 +25,7 @@ class RepositoryController extends Controller
      */
     public function create()
     {
-        //
+        return view('repository.create');
     }
 
     /**
@@ -33,7 +33,15 @@ class RepositoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            "title" => ['required'],
+            "descriptions" => ['required'],
+            "year"  => ['required', 'numeric', 'min:2021', 'max:2025'],
+            "author"  => ['required'],
+        ]);
+
+        Repository::create($request->all());
+        return redirect()->route('repository.index')->with('success', $new->title . "berhasil ditambahkan");
     }
 
     /**
@@ -49,7 +57,8 @@ class RepositoryController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $data = repository::where('nim',$id)->first();
+        return view('repository.edit')->with('data', $data);
     }
 
     /**
@@ -65,6 +74,7 @@ class RepositoryController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        repository::where('nim',$id)->delete();
+        return redirect()->to('repository')->with('success','Berhasil mendelete data');
     }
 }
